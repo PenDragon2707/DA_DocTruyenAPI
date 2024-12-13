@@ -13,6 +13,7 @@ public class TruyenTranh {
     private String tenTruyen;
     private String theLoai;
     private String tacGia;
+    private String anhBia;
 
     @Enumerated(EnumType.STRING)
     private TrangThai trangThai;

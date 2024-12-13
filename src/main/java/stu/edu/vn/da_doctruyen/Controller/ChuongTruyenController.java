@@ -1,7 +1,10 @@
 package stu.edu.vn.da_doctruyen.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import stu.edu.vn.da_doctruyen.Entity.ChuongTruyen;
 import stu.edu.vn.da_doctruyen.Service.ChuongTruyenService;
 
@@ -10,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/chuongtruyen")
 public class ChuongTruyenController {
+
     @Autowired
     private ChuongTruyenService service;
 
@@ -22,14 +26,12 @@ public class ChuongTruyenController {
     public ChuongTruyen getChapterById(@PathVariable String id) {
         return service.getChapterById(id);
     }
-
-    @PostMapping
-    public ChuongTruyen saveChapter(@RequestBody ChuongTruyen chapter) {
-        return service.saveChapter(chapter);
+    @GetMapping("/{id}/images")
+    public List<String> getChapterImages(@PathVariable String id) {
+        return service  .getChapterImagesById(id);
     }
-
-    @DeleteMapping("/{id}")
-    public void deleteChapter(@PathVariable String id) {
-        service.deleteChapter(id);
+    @GetMapping("/truyentranh/{truyenTranhId}")
+    public List<ChuongTruyen> getChaptersByTruyenTranhId(@PathVariable String truyenTranhId) {
+        return service.getChaptersByTruyenTranhId(truyenTranhId);
     }
 }
