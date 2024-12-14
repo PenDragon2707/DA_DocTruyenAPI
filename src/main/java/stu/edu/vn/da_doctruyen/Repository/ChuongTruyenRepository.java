@@ -8,4 +8,5 @@ import stu.edu.vn.da_doctruyen.Entity.ChuongTruyen;
 @Repository
 public interface ChuongTruyenRepository extends JpaRepository<ChuongTruyen, String> {
     List<ChuongTruyen> findByTruyenTranhId(String truyenTranhId);
+    List<ChuongTruyen> findByChuongTruyenId(Integer chuongTruyenId);
 }

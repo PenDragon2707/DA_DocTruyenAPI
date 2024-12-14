@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import stu.edu.vn.da_doctruyen.Entity.ChuongTruyen;
 import stu.edu.vn.da_doctruyen.Service.ChuongTruyenService;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -26,10 +28,18 @@ public class ChuongTruyenController {
     public ChuongTruyen getChapterById(@PathVariable String id) {
         return service.getChapterById(id);
     }
-    @GetMapping("/{id}/images")
-    public List<String> getChapterImages(@PathVariable String id) {
-        return service  .getChapterImagesById(id);
+    @GetMapping("/image/{id}")
+    public List<String> getImagebyID(@PathVariable String id) {
+        ChuongTruyen chuongTruyen = service.getImageById(Integer.valueOf(id));
+
+        if (chuongTruyen != null && chuongTruyen.getHinhAnhTruyen() != null) {
+            String[] imageNames = chuongTruyen.getHinhAnhTruyen().split(",");
+            return Arrays.asList(imageNames);
+        } else {
+            return new ArrayList<>();
+        }
     }
+
     @GetMapping("/truyentranh/{truyenTranhId}")
     public List<ChuongTruyen> getChaptersByTruyenTranhId(@PathVariable String truyenTranhId) {
         return service.getChaptersByTruyenTranhId(truyenTranhId);
