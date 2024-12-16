@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import stu.edu.vn.da_doctruyen.Entity.NguoiDung;
 import stu.edu.vn.da_doctruyen.Repository.NguoiDungRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -20,7 +21,16 @@ public class NguoiDungService {
         return repository.findById(id).orElse(null);
     }
 
+    public NguoiDung getUserByTenDangNhap(String tenDangNhap) {
+        return repository.findByTenDangNhap(tenDangNhap).orElse(null);
+    }
+
     public NguoiDung saveUser(NguoiDung user) {
+        return repository.save(user);
+    }
+
+    public NguoiDung createUser(NguoiDung user) {
+        user.setNguoiDungId(null);
         return repository.save(user);
     }
 

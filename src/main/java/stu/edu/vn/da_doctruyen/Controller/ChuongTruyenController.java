@@ -11,6 +11,7 @@ import stu.edu.vn.da_doctruyen.Service.ChuongTruyenService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/chuongtruyen")
@@ -44,4 +45,5 @@ public class ChuongTruyenController {
     public List<ChuongTruyen> getChaptersByTruyenTranhId(@PathVariable String truyenTranhId) {
         return service.getChaptersByTruyenTranhId(truyenTranhId);
     }
+
 }
