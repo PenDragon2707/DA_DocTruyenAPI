@@ -46,4 +46,5 @@ public class ChuongTruyenController {
         return service.getChaptersByTruyenTranhId(truyenTranhId);
     }
 
+
 }

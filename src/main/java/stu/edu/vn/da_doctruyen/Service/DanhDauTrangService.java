@@ -27,4 +27,9 @@ public class DanhDauTrangService {
     public void deleteBookmark(String id) {
         repository.deleteById(id);
     }
+
+    public DanhDauTrang getDanhDauTrangByNguoiDungAndChuong(String nguoiDungId, String chuongTruyenId) {
+        return repository.findByNguoiDungIdAndChuongTruyenId(nguoiDungId, chuongTruyenId);
+    }
 }
+
