@@ -1,6 +1,5 @@
 package stu.edu.vn.da_doctruyen.Controller;
 
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import stu.edu.vn.da_doctruyen.Entity.TruyenTranh;
@@ -43,9 +42,9 @@ public class TruyenTranhController {
     public List<TruyenTranh> searchTruyenByCategory(@PathVariable String theLoai) {
         return service.getTruyenByCategory(theLoai);
     }
+
     @GetMapping("/timkiem/{tentruyen}")
     public List<TruyenTranh> findByTen(@PathVariable String tentruyen) {
         return service.findByTen(tentruyen);
     }
-
 }
