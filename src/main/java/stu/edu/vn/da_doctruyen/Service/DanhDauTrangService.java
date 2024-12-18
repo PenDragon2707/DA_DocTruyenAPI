@@ -7,7 +7,6 @@ import stu.edu.vn.da_doctruyen.Entity.DanhDauTrang;
 import stu.edu.vn.da_doctruyen.Entity.TruyenTranh;
 import stu.edu.vn.da_doctruyen.Repository.ChuongTruyenRepository;
 import stu.edu.vn.da_doctruyen.Repository.DanhDauTrangRepository;
-import stu.edu.vn.da_doctruyen.Repository.NguoiDungRepository;
 import stu.edu.vn.da_doctruyen.Repository.TruyenTranhRepository;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class DanhDauTrangService {
     private TruyenTranhRepository truyenTranhRepository;
 
     public Map<String, List<DanhDauTrang>> getAllBookmarksGroupedByUserId(String userId) {
-        List<DanhDauTrang> bookmarks = repository.findAll();
+        List<DanhDauTrang> bookmarks = repository.findByNguoiDungId(userId);
         return bookmarks.stream()
                 .collect(Collectors.groupingBy(DanhDauTrang::getNguoiDungId));
     }
@@ -39,31 +38,27 @@ public class DanhDauTrangService {
 
     public DanhDauTrang saveBookmark(String nguoiDungId, String chuongtruyenId) {
         DanhDauTrang danhDauTrang = new DanhDauTrang();
+        ChuongTruyen chuongTruyen = chuongTruyenRepository.findById(chuongtruyenId).orElse(null);
+
+        if (chuongTruyen != null) {
+            TruyenTranh truyenTranh = truyenTranhRepository.findById(chuongTruyen.getTruyenTranhId()).orElse(null);
+
+            if (truyenTranh != null) {
+                danhDauTrang.setTenTruyen(truyenTranh.getTenTruyen());
+            }
+            danhDauTrang.setTenChuong(chuongTruyen.getTenChuong());
+        }
+
         danhDauTrang.setNguoiDungId(nguoiDungId);
         danhDauTrang.setChuongTruyenId(chuongtruyenId);
+
         return repository.save(danhDauTrang);
     }
+
 
     public void deleteBookmark(String id) {
         repository.deleteById(id);
     }
-
-    public Map<String, String> getChapterAndStoryNameByChapterId(String chuongtruyenId) {
-        ChuongTruyen chuongTruyen = chuongTruyenRepository.findById(chuongtruyenId).orElse(null);
-        if (chuongTruyen != null) {
-            String truyenId = chuongTruyen.getTruyenTranhId();
-            TruyenTranh truyenTruyen = truyenTranhRepository.findById(truyenId).orElse(null);
-
-            if (truyenTruyen != null) {
-                return Map.of(
-                        "tenChuong", chuongTruyen.getTenChuong(),
-                        "tenTruyen", truyenTruyen.getTenTruyen()
-                );
-            }
-        }
-        return Map.of("error", "Không tìm thấy thông tin chương hoặc truyện");
-    }
-
 
 
 }

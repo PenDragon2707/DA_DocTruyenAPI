@@ -12,4 +12,7 @@ public class DanhDauTrang {
     private Integer danhDauTrangId;
     private String nguoiDungId;
     private String chuongTruyenId;
+    private String tenChuong;
+    private String tenTruyen;
+
 }

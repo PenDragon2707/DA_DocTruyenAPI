@@ -14,6 +14,7 @@ public class NguoiDung {
     private String tenDangNhap;
     private String matKhau;
     private BigDecimal soDu;
+    private String email;
     @Enumerated(EnumType.STRING)
     private PhanQuyen phanQuyen;
     public enum PhanQuyen {

@@ -51,14 +51,12 @@ public class DanhDauTrangController {
         }
     }
 
+
     @GetMapping("/nguoidung/{id}")
     public Map<String, List<DanhDauTrang>> getBookmarksGroupedByUserId(@PathVariable String id) {
         return service.getAllBookmarksGroupedByUserId(id);
     }
-    @GetMapping("/truyen/{chuongtruyenId}")
-    public Map<String, String> getChapterAndStoryName(@PathVariable String chuongtruyenId) {
-        return service.getChapterAndStoryNameByChapterId(chuongtruyenId);
-    }
+
 
 
 
