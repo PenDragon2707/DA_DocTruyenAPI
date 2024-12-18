@@ -32,4 +32,19 @@ public class TruyenTranhController {
     public void deleteComic(@PathVariable String id) {
         service.deleteComic(id);
     }
+
+    @GetMapping("/theloai")
+    public List<String> getAllCategories() {
+        return service.getAllCategories();
+    }
+
+    @GetMapping("/theloai/{theLoai}")
+    public List<TruyenTranh> searchTruyenByCategory(@PathVariable String theLoai) {
+        return service.getTruyenByCategory(theLoai);
+    }
+
+    @GetMapping("/timkiem/{tentruyen}")
+    public List<TruyenTranh> findByTen(@PathVariable String tentruyen) {
+        return service.findByTen(tentruyen);
+    }
 }

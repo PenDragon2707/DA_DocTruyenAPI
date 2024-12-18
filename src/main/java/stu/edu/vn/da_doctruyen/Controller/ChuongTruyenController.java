@@ -29,6 +29,7 @@ public class ChuongTruyenController {
     public ChuongTruyen getChapterById(@PathVariable String id) {
         return service.getChapterById(id);
     }
+
     @GetMapping("/image/{id}")
     public List<String> getImagebyID(@PathVariable String id) {
         ChuongTruyen chuongTruyen = service.getImageById(Integer.valueOf(id));

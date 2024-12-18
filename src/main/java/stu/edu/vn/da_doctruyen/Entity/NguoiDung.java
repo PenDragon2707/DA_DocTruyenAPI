@@ -12,6 +12,7 @@ public class NguoiDung {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer nguoiDungId;
     private String tenDangNhap;
+    private String email;
     private String matKhau;
     private BigDecimal soDu;
     @Enumerated(EnumType.STRING)

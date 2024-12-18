@@ -13,6 +13,7 @@ public class GiaoDich {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer giaoDichId;
+    private String chuongTruyenId;
     private String nguoiDungId;
     private BigDecimal soTien;
     private Date ngayGiaoDich;

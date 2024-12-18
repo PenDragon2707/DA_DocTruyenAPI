@@ -19,8 +19,6 @@ public class TruyenTranh {
     private TrangThai trangThai;
     @Lob
     private String moTa;
-    private String nguoiDungId;
-
     public enum TrangThai {
         DANG_PHAT_HANH, HOAN_THANH
     }
